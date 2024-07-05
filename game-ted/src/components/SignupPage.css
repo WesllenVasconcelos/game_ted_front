@@ -1,0 +1,105 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.form-section {
+  width: 45%;
+}
+
+.form-section h1 {
+  margin-bottom: 1rem;
+}
+
+.form-section label {
+  display: block;
+  margin: 0.5rem 0;
+  text-align: left;
+}
+
+.form-section input[type="text"],
+.form-section input[type="email"],
+.form-section input[type="password"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.placeholder {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+fieldset {
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.form-actions button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-actions button[type="button"] {
+  background: #000000;
+  color: #fff;
+}
+
+.form-actions button[type="submit"] {
+  background: #ff4d4d;
+  color: #fff;
+}
+
+.profile-section {
+  width: 45%;
+}
+
+.profile-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem; /* Ajustado para reduzir o espaçamento vertical */
+}
+
+.profile-text {
+  flex: 1; /* Ocupa o espaço restante */
+  margin-bottom: 0.1rem;
+}
+
+.profile-image {
+  width: 250px; /* Tamanho ajustado da imagem */
+  height: auto;
+  margin-left: 1rem; /* Espaçamento entre o texto e a imagem */
+}
+
+.separator-line {
+  width: 1px; /* Largura da linha vertical */
+  height: 100%; /* Altura da linha igual à altura do conteúdo */
+  background-color: #000;
+}
