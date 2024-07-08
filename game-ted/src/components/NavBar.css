@@ -1,0 +1,85 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  
+}
+
+.logo a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.logo a:hover {
+  color: #666; /* Alterar a cor no hover, se desejar */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adiciona a sombra */
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav a {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #666;
+}
+
+.nav input {
+  padding: 0.5rem 1rem;
+  margin: 0 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.nav input:focus {
+  border-color: #000000;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.auth a {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #000000;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth a:hover {
+  background-color: #000000;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav a,
+  .nav input,
+  .auth a {
+    margin: 0.5rem 0;
+  }
+
+  .auth {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

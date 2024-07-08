@@ -1,21 +1,13 @@
 import React from 'react';
-import Header from './header';
 import './SignupPage.css';
 
 import professorImg from '../assets/Professor.png';
 import alunoImg from '../assets/Aluno.png';
 import pesquisadorImg from '../assets/Pesquisador.png';
 
-
-const SignupPage: React.FC = () => {
-  const handleSearch = (query: string) => {
-    // Função de busca que pode ser usada ou passada para o Header, se necessário
-    console.log('Query de busca:', query);
-  };
-
+const SignupPage = () => {
   return (
     <div className="container">
-      <Header onSearch={handleSearch} />
       <main className="main-content">
         <div className="form-section">
           <h1>Crie uma conta no GAMETED</h1>
@@ -50,7 +42,9 @@ const SignupPage: React.FC = () => {
                 <input type="radio" name="role" value="developer" />
                 Sou um(a) Desenvolvedor(a)!
               </label>
-              <p className="placeholder">Você não poderá mudar essa resposta depois, ela será utilizada para a criação da conta e homologação do sistema então escolha bem.</p>
+              <p className="placeholder">
+                Você não poderá mudar essa resposta depois, ela será utilizada para a criação da conta e homologação do sistema então escolha bem.
+              </p>
             </fieldset>
             <label>
               <input type="checkbox" name="terms" />
