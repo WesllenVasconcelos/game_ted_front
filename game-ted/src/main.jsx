@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import NavBar from './components/NavBar.jsx';
 import SignupPage from './components/SignupPage';
 import Home from './components/home';
+import RecuperaSenha from './components/SenhaRecupera.jsx';
 
 const router = createBrowserRouter(
   [
@@ -20,8 +20,13 @@ const router = createBrowserRouter(
           path: "/signup",
           element: <SignupPage />,
         },
+        {
+          path: "/recupera",
+          element: <RecuperaSenha/>,
+        },
       ],
     },
+    
     { errorElement: <div>Erro: Página não encontrada</div> },
   ]
 );
