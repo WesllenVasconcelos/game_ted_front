@@ -29,7 +29,7 @@ const RecuperaSenha = () => {
                 </div>
                 <div className="recupera-links">
                     Ou <Link to="/signup" className="custom-link">Crie uma conta</Link> *
-                    <Link to="/" className="custom-link"> Realize o login</Link>
+                    <Link to="/login" className="custom-link"> Realize o login</Link>
                 </div>
             </div>
             <div className="recupera-creditos">
