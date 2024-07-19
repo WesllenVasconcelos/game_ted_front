@@ -1,7 +1,8 @@
 import React from 'react';
-import {useState} from 'react';
+import { useState } from 'react';
 import "./Login.css"
 import GTD from '../assets/GTD.png';
+import { Outlet, Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -19,13 +20,13 @@ const Login = () => {
                 <form onSubmit={handleSubimit}>
                     <h1>Seja, Bem-Vindo!</h1>
                     <div className='input-field'>
-                        <input type="email" placeholder='E-mail' 
-                        onChange={(e) => setUsername(e.target.value)}/>
+                        <input type="email" placeholder='E-mail'
+                            onChange={(e) => setUsername(e.target.value)} />
                     </div>
 
                     <div className='input-field'>
-                        <input type="password" placeholder='Senha' 
-                        onChange={(e) => setPassword(e.target.value)}/>
+                        <input type="password" placeholder='Senha'
+                            onChange={(e) => setPassword(e.target.value)} />
                     </div>
 
                     <div className='recall-forget'>
@@ -33,22 +34,23 @@ const Login = () => {
                             <input type="checkbox" />
                             Lembre de mim
                         </label>
-                        <a href="#">Esqueceu a senha?</a>
+                        <Link to="/recupera">Esqueceu a senha?</Link>
                     </div>
 
                     <button>Entrar</button>
 
                     <div className='signup-link'>
                         <p>
-                            Não tem uma conta? <a href="#">Registrar</a>
+                            <Link to="/signup">Não tem uma conta?</Link>
                         </p>
                     </div>
                 </form>
             </div>
 
             <div className='Descrição'>
-                <img src={GTD} alt="#"/>
+                <img src={GTD} alt="#" />
             </div>
+            <Outlet />
         </div>
     )
 }

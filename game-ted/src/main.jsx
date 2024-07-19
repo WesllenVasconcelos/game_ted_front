@@ -6,6 +6,7 @@ import NavBar from './components/NavBar.jsx';
 import SignupPage from './components/SignupPage';
 import Home from './components/home';
 import RecuperaSenha from './components/SenhaRecupera.jsx';
+import Login from './components/Login.jsx'
 
 const router = createBrowserRouter(
   [
@@ -23,6 +24,10 @@ const router = createBrowserRouter(
         {
           path: "/recupera",
           element: <RecuperaSenha/>,
+        },
+        {
+          path: "/login",
+          element: <Login/>,
         },
       ],
     },
