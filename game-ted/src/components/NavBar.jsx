@@ -7,7 +7,7 @@ const NavBar = () => {
     <div>
       <header className="header">
         <div className="logo">
-          <Link to="/">GAMETED</Link>
+          <Link to="/"><img src="https://github.com/WesllenVasconcelos/game_ted_front/blob/main/game-ted/src/assets/logo.png?raw=true" alt="" /></Link>
         </div>
         <nav className="nav">
           <Link to="/Glboard">GlBoard</Link>
