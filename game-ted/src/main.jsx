@@ -7,6 +7,7 @@ import SignupPage from './components/SignupPage';
 import Home from './components/home';
 import RecuperaSenha from './components/SenhaRecupera.jsx';
 import Login from './components/Login.jsx'
+import CadastroJogo from './components/CadastraJogo.jsx';
 
 const router = createBrowserRouter(
   [
@@ -29,6 +30,11 @@ const router = createBrowserRouter(
           path: "/login",
           element: <Login/>,
         },
+        {
+          path: "/cadastrojogo",
+          element: <CadastroJogo/>,
+        },
+        
       ],
     },
     

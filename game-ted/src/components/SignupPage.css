@@ -17,8 +17,6 @@
 .profile-section {
   flex: 1; /* Ambas as seções ocupam o espaço disponível igualmente */
   background-color: #fff; /* Fundo branco para as seções */
-  border-radius: 8px; /* Borda arredondada */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 .form-section {
