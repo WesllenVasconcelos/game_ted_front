@@ -4,14 +4,16 @@ import './NavBar.css'; // Adicione estilos para a NavBar
 
 const NavBar = () => {
   return (
-    <div>
-      <header className="header">
+    <>
+      <nav className="navbar">
         <div className="logo">
           <Link to="/">GAMETED</Link>
         </div>
-        <nav className="nav">
-          <Link to="/Glboard">GlBoard</Link>
-          <Link to="/Thinktest">ThinkTest</Link>
+        <div className="nav-items">
+          <div className="nav-links">
+            <Link to="/Glboard">GlBoard</Link>
+            <Link to="/Thinktest">ThinkTest</Link>
+          </div>
           <input
             type="text"
             placeholder="Procure por Jogos ou Conteúdos Didáticos"
@@ -21,10 +23,10 @@ const NavBar = () => {
             <Link to="/signup">Cadastrar</Link>
             <Link to="/login">Entrar</Link>
           </div>
-        </nav>
-      </header>
+        </div>
+      </nav>
       <Outlet />
-    </div>
+    </>
   );
 };
 
