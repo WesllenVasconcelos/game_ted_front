@@ -51,38 +51,88 @@ input[type="text"] {
 }
 
 .upload-section {
-    display: flex; /* Exibição em linha dos elementos dentro da seção de upload */
-    align-items: flex-start; /* Alinhamento vertical ao topo para garantir que a imagem e os botões fiquem no topo */
-    margin-bottom: 1rem; /* Espaçamento inferior entre seções de upload */
+  display: flex; /* Exibição em linha dos elementos dentro da seção de upload */
+  align-items: flex-start; /* Alinhamento vertical ao topo para garantir que a imagem e os botões fiquem no topo */
+  margin-bottom: 1rem; /* Espaçamento inferior entre seções de upload */
 }
 
 .upload-label {
-display: flex;
-align-items: flex-start; /* Alinha a imagem ao topo da seção */
+  display: flex;
+  align-items: flex-start; /* Alinha a imagem ao topo da seção */
+  cursor: pointer; /* Adiciona cursor pointer para indicar que é clicável */
 }
 
 .upload-icon {
-width: 150px; /* Tamanho ajustado da imagem conforme solicitado */
-height: auto; /* Mantém a proporção da imagem */
-margin-right: 1rem; /* Espaço entre a imagem e os botões */
+  width: 150px; /* Tamanho ajustado da imagem conforme solicitado */
+  height: auto; /* Mantém a proporção da imagem */
+  margin-right: 1rem; /* Espaço entre a imagem e os botões */
 }
 
 .upload-input {
-display: none; /* Oculta o input de arquivo, se necessário */
+  display: none; /* Oculta o input de arquivo */
+}
+/* Estilização do botão de upload */
+.upload-button {
+  background-color: #000; /* Cor de fundo para o botão */
+  color: #fff; /* Cor do texto */
+  padding: 0.5rem 1rem; /* Espaçamento interno do botão */
+  border: none; /* Remove a borda padrão do botão */
+  border-radius: 4px; /* Cantos arredondados do botão */
+  cursor: pointer; /* Indica que o botão é clicável */
+  margin-bottom: 0.5rem; /* Espaçamento inferior entre os botões */
+  font-family: 'Montserrat', sans-serif; /* Fonte usada */
+  font-size: 16px; /* Tamanho da fonte */
+  text-align: center; /* Centraliza o texto dentro do botão */
+}
+
+.upload-button:hover {
+  background-color: #333; /* Cor de fundo do botão ao passar o mouse */
+}
+
+/* Ajustes específicos para o label */
+.file-actions label {
+  background-color: #000; /* Cor de fundo para o label */
+  color: #fff; /* Cor do texto */
+  padding: 0.5rem 1rem; /* Espaçamento interno do label */
+  border: none; /* Remove a borda padrão do label */
+  border-radius: 4px; /* Cantos arredondados do label */
+  cursor: pointer; /* Indica que o label é clicável */
+  margin-bottom: 0.5rem; /* Espaçamento inferior entre os botões */
+  font-family: 'Montserrat', sans-serif; /* Fonte usada */
+  font-size: 16px; /* Tamanho da fonte */
+  text-align: center; /* Centraliza o texto dentro do label */
+}
+
+/* Ajusta o input de arquivo para estar oculto */
+.file-input {
+  display: none; /* Oculta o input de arquivo */
+}
+
+.file-actions-container {
+  position: relative; /* Necessário para posicionamento absoluto dos filhos */
+  width: 100%; /* Ajuste conforme necessário */
+  height: 100%; /* Ajuste conforme necessário */
 }
 
 .file-actions {
-display: flex;
-flex-direction: column; /* Coloca os botões um embaixo do outro */
-justify-content: center; /* Centraliza os botões verticalmente */
+  position: absolute;
+  right: 0; /* Alinha o contêiner no lado direito */
+  top: 60%; /* Centraliza verticalmente, ajuste conforme necessário */
+  transform: translateY(-90%); /* Ajusta o alinhamento vertical */
+  display: flex;
+  flex-direction: column; /* Coloca os botões um embaixo do outro */
+  justify-content: center; /* Centraliza os botões verticalmente */
 }
 
-.file-actions button {
-padding: 0.5rem 1rem;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-margin-bottom: 0.5rem; /* Espaçamento entre os botões */
+.file-actions button, .file-actions label {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 0.5rem; /* Espaçamento entre os botões */
+  font-family: 'Montserrat', sans-serif; /* Fonte usada */
+  font-size: 16px; /* Tamanho da fonte */
+  text-align: center; /* Centraliza o texto dentro dos botões */
 }
 
 .file-actions button:first-child {

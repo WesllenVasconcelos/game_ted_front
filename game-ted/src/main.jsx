@@ -8,6 +8,7 @@ import Home from './components/home';
 import RecuperaSenha from './components/SenhaRecupera.jsx';
 import Login from './components/Login.jsx'
 import CadastroJogo from './components/CadastraJogo.jsx';
+import Perfil from './components/perfil.jsx';
 
 const router = createBrowserRouter(
   [
@@ -33,6 +34,10 @@ const router = createBrowserRouter(
         {
           path: "/cadastrojogo",
           element: <CadastroJogo/>,
+        },
+        {
+          path: "/perfil",
+          element: <Perfil/>,
         },
         
       ],
