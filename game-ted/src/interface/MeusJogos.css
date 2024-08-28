@@ -1,24 +1,50 @@
-/* src/components/MeusJogos.css */
-.meus-jogos-container {
-    text-align: center;
-  }
-  
-  .button-container {
-    margin: 20px 0;
-  }
-  
-  .submit-game-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #007bff; /* Cor azul padrão */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-  }
-  
-  .submit-game-button:hover {
-    background-color: #0056b3; /* Cor azul mais escura ao passar o mouse */
-  }
-  
+/* MeusJogos.css */
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100vw;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px; /* Ajuste conforme necessário */
+}
+
+.container button {
+  background-color: #0275d8;
+  color: white;
+  font-weight: bold;
+  position: fixed;
+  bottom: 16px;
+  right: 24px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+
+.container button:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 7px 0px;
+  transform: scale(1.1);
+}
+
+.submit-game-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.submit-game-button:hover {
+  background-color: #0056b3;
+}
