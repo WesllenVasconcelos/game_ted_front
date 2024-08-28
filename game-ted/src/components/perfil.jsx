@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./perfil.css";
+import "./Perfil.css";
 import profileIcon from '../assets/profile-icon.png';
 
 const Perfil = () => {
