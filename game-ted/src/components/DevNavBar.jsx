@@ -22,6 +22,11 @@ const DevNavBar = () => {
           onChange={(event) => console.log(event.target.value)}
         />
       </div>
+      <div className="dev-button">
+        <Link to="/desenvolvedor">
+          <span role="img" aria-label="developer">😃</span> Desenvolvedor
+        </Link>
+      </div>
     </nav>
   );
 };
