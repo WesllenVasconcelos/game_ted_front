@@ -1,14 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import DevNavBar from './DevNavBar'; // Barra de navegação do desenvolvedor
+import DevNavBar from './DevNavBar'; // Supondo que você tenha um componente de DevNavBar
 
-const DevLayout = () => {
-  return (
-    <div>
-      <DevNavBar />
-      <Outlet /> {/* Renderiza o componente filho da rota */}
-    </div>
-  );
-};
+const DevLayout = () => (
+  <div>
+    <DevNavBar />
+    <main>
+      <Outlet />
+    </main>
+  </div>
+);
 
 export default DevLayout;
