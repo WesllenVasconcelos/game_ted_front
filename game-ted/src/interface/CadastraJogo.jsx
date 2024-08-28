@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CadastraJogo.css';
-import videoIcon from '../assets/video-icon.png';
-import photoIcon from '../assets/photo-icon.png';
 
 const CadastraJogo = ({ onAddJogo }) => {
   const [title, setTitle] = useState('');
@@ -14,7 +12,8 @@ const CadastraJogo = ({ onAddJogo }) => {
   const [ageRating, setAgeRating] = useState('');
   const [contentRating, setContentRating] = useState('');
   const [gameGenre, setGameGenre] = useState('');
-  const [image, setImage] = useState('');
+  const [imageLink, setImageLink] = useState(''); // Alterado para imageLink
+  const [videoLink, setVideoLink] = useState(''); // Novo campo para videoLink
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
@@ -34,7 +33,8 @@ const CadastraJogo = ({ onAddJogo }) => {
       ageRating,
       contentRating,
       gameGenre,
-      image,
+      imageLink,  // Atualizado para imageLink
+      videoLink,  // Adicionado videoLink
     };
     onAddJogo(novoJogo);
 
@@ -52,18 +52,10 @@ const CadastraJogo = ({ onAddJogo }) => {
       setAgeRating('');
       setContentRating('');
       setGameGenre('');
-      setImage('');
+      setImageLink(''); // Limpar imageLink
+      setVideoLink(''); // Limpar videoLink
       navigate('/meusjogos');
     }, 2000);
-  };
-
-  const handleImageUpload = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImage(reader.result); // Converte a imagem em base64 para exibição
-    };
-    reader.readAsDataURL(file);
   };
 
   return (
@@ -154,43 +146,24 @@ const CadastraJogo = ({ onAddJogo }) => {
         </div>
         <div className="form-right">
           <label>
-            <span>Anexo de Links de Acesso ao Jogo:</span>
+            <span>URL da Imagem:</span>
             <input
               type="text"
-              name="access-links"
-              value={accessLinks}
-              onChange={(e) => setAccessLinks(e.target.value)}
+              name="image-link"
+              value={imageLink}
+              onChange={(e) => setImageLink(e.target.value)}
+              placeholder="Insira a URL da imagem"
             />
           </label>
-          <label className="upload-section">
-            <div className="upload-label">
-              <img src={videoIcon} alt="Video" className="upload-icon" />
-              <input type="file" className="upload-input" />
-            </div>
-            <div className="file-actions-container">
-              <div className="file-actions">
-                <button type="button" className="upload-button">Enviar</button>
-                <label className="upload-button" htmlFor="videoInput">
-                  Biblioteca de Mídia
-                </label>
-                <input type="file" id="videoInput" className="file-input" accept="video/*" />
-              </div>
-            </div>
-          </label>
-          <label className="upload-section">
-            <div className="upload-label">
-              <img src={photoIcon} alt="Photos" className="upload-icon" />
-              <input type="file" multiple className="upload-input" onChange={handleImageUpload} />
-            </div>
-            <div className='file-actions-container'>
-              <div className="file-actions">
-                <button type="button" className="upload-button">Enviar</button>
-                <label htmlFor="fileInput" className="upload-button">
-                  Biblioteca de Mídia
-                </label>
-                <input type="file" id="fileInput" accept="image/*" className="upload-input" />
-              </div>
-            </div>
+          <label>
+            <span>URL do Vídeo:</span>
+            <input
+              type="text"
+              name="video-link"
+              value={videoLink}
+              onChange={(e) => setVideoLink(e.target.value)}
+              placeholder="Insira a URL do vídeo"
+            />
           </label>
           <label>
             <span>Plataforma:</span>
