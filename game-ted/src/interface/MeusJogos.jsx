@@ -1,14 +1,14 @@
-// src/interface/MeusJogos.jsx
+// src/pages/MeusJogos.jsx
 import React, { useState, useEffect } from 'react';
 import './MeusJogos.css';
-import { Card } from '../components/Card';
+import Card from '../components/Card'; // Importação sem chaves
+import CadastraJogo from './CadastraJogo.jsx';
 import { useGameData } from '../hooks/useGameData';
-import { CreateModal } from '../components/CreateModal';
 
 function MeusJogos() {
     const { data } = useGameData();
     const [jogos, setJogos] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isFormOpen, setIsFormOpen] = useState(false);
 
     useEffect(() => {
         if (data) {
@@ -16,12 +16,13 @@ function MeusJogos() {
         }
     }, [data]);
 
-    const handleOpenModal = () => {
-        setIsModalOpen(prev => !prev);
+    const handleAddJogo = (novoJogo) => {
+        setJogos(prevJogos => [...prevJogos, novoJogo]);
+        setIsFormOpen(false); // Fechar o formulário após adicionar o jogo
     };
 
-    const handleAddGame = (newGame) => {
-        setJogos(prevJogos => [...prevJogos, newGame]);
+    const toggleForm = () => {
+        setIsFormOpen(prev => !prev);
     };
 
     return (
@@ -32,16 +33,16 @@ function MeusJogos() {
                     <Card
                         key={game.id}
                         title={game.title}
-                        image={game.image}
-                        genre={game.genre}
-                        type={game.type}
+                        image={game.imageLink}
+                        genre={game.gameGenre}
+                        type={game.gameType}
                     />
                 ))}
             </div>
-            <button className="submit-game-button" onClick={handleOpenModal}>
+            <button className="submit-game-button" onClick={toggleForm}>
                 Adicionar Jogo
             </button>
-            {isModalOpen && <CreateModal closeModal={handleOpenModal} addGame={handleAddGame} />}
+            {isFormOpen && <CadastraJogo onAddJogo={handleAddJogo} />}
         </div>
     );
 }

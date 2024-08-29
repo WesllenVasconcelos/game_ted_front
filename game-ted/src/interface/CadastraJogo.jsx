@@ -12,8 +12,8 @@ const CadastraJogo = ({ onAddJogo }) => {
   const [ageRating, setAgeRating] = useState('');
   const [contentRating, setContentRating] = useState('');
   const [gameGenre, setGameGenre] = useState('');
-  const [imageLink, setImageLink] = useState(''); // Alterado para imageLink
-  const [videoLink, setVideoLink] = useState(''); // Novo campo para videoLink
+  const [imageLink, setImageLink] = useState('');
+  const [videoLink, setVideoLink] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
@@ -33,16 +33,14 @@ const CadastraJogo = ({ onAddJogo }) => {
       ageRating,
       contentRating,
       gameGenre,
-      imageLink,  // Atualizado para imageLink
-      videoLink,  // Adicionado videoLink
+      imageLink,
+      videoLink,
     };
     onAddJogo(novoJogo);
 
-    // Exibe a mensagem de sucesso e redireciona após 2 segundos
     setSuccessMessage('Jogo criado com sucesso!');
     setTimeout(() => {
-      setSuccessMessage('');  // Limpa a mensagem de sucesso
-      // Limpa os campos do formulário
+      setSuccessMessage('');
       setTitle('');
       setAccessLinks('');
       setPlatform('');
@@ -52,8 +50,8 @@ const CadastraJogo = ({ onAddJogo }) => {
       setAgeRating('');
       setContentRating('');
       setGameGenre('');
-      setImageLink(''); // Limpar imageLink
-      setVideoLink(''); // Limpar videoLink
+      setImageLink('');
+      setVideoLink('');
       navigate('/meusjogos');
     }, 2000);
   };
@@ -210,5 +208,3 @@ const CadastraJogo = ({ onAddJogo }) => {
 };
 
 export default CadastraJogo;
-
-

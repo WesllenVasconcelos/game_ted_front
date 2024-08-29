@@ -1,5 +1,6 @@
+// src/pages/DesenvolvedorHome.jsx
 import React from 'react';
-import { Card } from '../components/Card'; // Importa o componente Card
+import Card from '../components/Card'; // Importação padrão
 import './DesenvolvedorHome.css'; // Estilos da página
 
 const gamesList = [
