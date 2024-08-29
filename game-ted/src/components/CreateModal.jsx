@@ -1,48 +1,71 @@
-import { useEffect, useState } from 'react';
-import './modal.css';
+// src/components/CreateModal.jsx
+import React, { useState } from 'react';
+import './Modal.css';
+import { addGame } from '../gameService';
 
-const Input = ({ label, value, updateValue }) => {
-    return (
-        <>
-            <label>{label}</label>
-            <input value={value} onChange={event => updateValue(event.target.value)} />
-        </>
-    );
-}
+export const CreateModal = ({ closeModal, onGameAdded }) => {
+    const [title, setTitle] = useState('');
+    const [genre, setGenre] = useState('');
+    const [image, setImage] = useState('');
 
-export function CreateModal({ closeModal }) {
-    const [title, setTitle] = useState("");
-    const [genre, setGenre] = useState("");
-    const [image, setImage] = useState("");
-    const { mutate, isSuccess, isLoading } = useGameDataMutate(); // Certifique-se de que o hook correto está sendo importado
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-    const submit = () => {
-        const gameData = {
-            title,
-            genre,
-            image
-        };
-        mutate(gameData);
-    }
+        try {
+            const newGame = { title, genre, image };
+            const createdGame = await addGame(newGame);
 
-    useEffect(() => {
-        if (!isSuccess) return;
-        closeModal();
-    }, [isSuccess, closeModal]);
+            alert('Jogo criado com sucesso!');
+            if (typeof onGameAdded === 'function') {
+                onGameAdded(createdGame); // Atualiza o estado local com o novo jogo
+            }
+            closeModal();
+        } catch (error) {
+            alert('Erro ao criar jogo');
+        }
+    };
 
     return (
         <div className="modal-overlay">
             <div className="modal-body">
-                <h2>Cadastre um novo jogo</h2>
-                <form className="input-container">
-                    <Input label="Título" value={title} updateValue={setTitle} />
-                    <Input label="Gênero" value={genre} updateValue={setGenre} />
-                    <Input label="Imagem" value={image} updateValue={setImage} />
+                <h2>Criar Novo Jogo</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="input-container">
+                        <label htmlFor="title">Título</label>
+                        <input 
+                            type="text" 
+                            id="title" 
+                            value={title} 
+                            onChange={(e) => setTitle(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="genre">Gênero</label>
+                        <input 
+                            type="text" 
+                            id="genre" 
+                            value={genre} 
+                            onChange={(e) => setGenre(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="image">Imagem</label>
+                        <input 
+                            type="text" 
+                            id="image" 
+                            value={image} 
+                            onChange={(e) => setImage(e.target.value)} 
+                            required 
+                        />
+                    </div>
+                    <div className="button-container">
+                        <button type="submit" className="btn-secondary">Submeter</button>
+                        <button type="button" className="btn-secondary cancel" onClick={closeModal}>Cancelar</button>
+                    </div>
                 </form>
-                <button onClick={submit} className="btn-secondary">
-                    {isLoading ? 'Postando...' : 'Postar'}
-                </button>
             </div>
         </div>
     );
-}
+};

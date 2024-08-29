@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'; // Note a importação de 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query'; // Importação do QueryClient e QueryClientProvider
 import MainLayout from './components/MainLayout.jsx';
 import DevLayout from './components/DevLayout.jsx';
 import SignupPage from './interface/SignupPage.jsx';
@@ -14,6 +15,9 @@ import SalasDeTeste from './interface/SalasDeTeste.jsx';
 import Biblioteca from './interface/Biblioteca.jsx';
 import MeusJogos from './interface/MeusJogos.jsx';
 import EditarJogo from './components/EditarJogo.jsx';
+
+// Criação do QueryClient
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
@@ -40,10 +44,13 @@ const router = createBrowserRouter([
   { path: '*', element: <div>Erro: Página não encontrada</div> },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('root')); // Atualize aqui
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* Envolvendo RouterProvider com QueryClientProvider */}
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   </React.StrictMode>
 );
