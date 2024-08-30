@@ -1,9 +1,9 @@
-// src/pages/MeusJogos.jsx
 import React, { useState, useEffect } from 'react';
 import './MeusJogos.css';
 import Card from '../components/Card'; // Importação sem chaves
 import CadastraJogo from './CadastraJogo.jsx';
 import { useGameData } from '../hooks/useGameData';
+import axios from 'axios';
 
 function MeusJogos() {
     const { data } = useGameData();
@@ -20,6 +20,16 @@ function MeusJogos() {
         setJogos(prevJogos => [...prevJogos, novoJogo]);
         setIsFormOpen(false); // Fechar o formulário após adicionar o jogo
     };
+    
+    const handleUpdateJogo = (updatedJogo) => {
+        setJogos(prevJogos =>
+            prevJogos.map(jogo => jogo.id === updatedJogo.id ? updatedJogo : jogo)
+        );
+    };
+
+    const handleDeleteJogo = (id) => {
+        setJogos(prevJogos => prevJogos.filter(jogo => jogo.id !== id));
+    };
 
     const toggleForm = () => {
         setIsFormOpen(prev => !prev);
@@ -32,15 +42,14 @@ function MeusJogos() {
                 {jogos.map(game => (
                     <Card
                         key={game.id}
-                        title={game.title}
-                        image={game.imageLink}
-                        genre={game.gameGenre}
-                        type={game.gameType}
+                        game={game}
+                        onUpdate={handleUpdateJogo}
+                        onDelete={handleDeleteJogo}
                     />
                 ))}
             </div>
             <button className="submit-game-button" onClick={toggleForm}>
-                Adicionar Jogo
+                {isFormOpen ? 'Fechar Formulário' : 'Adicionar Jogo'}
             </button>
             {isFormOpen && <CadastraJogo onAddJogo={handleAddJogo} />}
         </div>
