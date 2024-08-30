@@ -1,59 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import './MeusJogos.css';
-import Card from '../components/Card'; // Importação sem chaves
-import CadastraJogo from './CadastraJogo.jsx';
-import { useGameData } from '../hooks/useGameData';
-import axios from 'axios';
+import { Card } from '../components/Card';
+import { getGames } from '../gameService';
+import { CreateModal } from '../components/CreateModal';
 
 function MeusJogos() {
-    const { data } = useGameData();
-    const [jogos, setJogos] = useState([]);
-    const [isFormOpen, setIsFormOpen] = useState(false);
+  const [gamesList, setGamesList] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        if (data) {
-            setJogos(data);
-        }
-    }, [data]);
-
-    const handleAddJogo = (novoJogo) => {
-        setJogos(prevJogos => [...prevJogos, novoJogo]);
-        setIsFormOpen(false); // Fechar o formulário após adicionar o jogo
-    };
-    
-    const handleUpdateJogo = (updatedJogo) => {
-        setJogos(prevJogos =>
-            prevJogos.map(jogo => jogo.id === updatedJogo.id ? updatedJogo : jogo)
-        );
+  useEffect(() => {
+    const fetchGames = async () => {
+      try {
+        const games = await getGames();
+        setGamesList(games);
+      } catch (error) {
+        console.error("Erro ao carregar jogos:", error);
+      }
     };
 
-    const handleDeleteJogo = (id) => {
-        setJogos(prevJogos => prevJogos.filter(jogo => jogo.id !== id));
-    };
+    fetchGames();
+  }, []);
 
-    const toggleForm = () => {
-        setIsFormOpen(prev => !prev);
-    };
+  const handleOpenModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
-    return (
-        <div className="container">
-            <h1>Meus Jogos</h1>
-            <div className="card-grid">
-                {jogos.map(game => (
-                    <Card
-                        key={game.id}
-                        game={game}
-                        onUpdate={handleUpdateJogo}
-                        onDelete={handleDeleteJogo}
-                    />
-                ))}
-            </div>
-            <button className="submit-game-button" onClick={toggleForm}>
-                {isFormOpen ? 'Fechar Formulário' : 'Adicionar Jogo'}
-            </button>
-            {isFormOpen && <CadastraJogo onAddJogo={handleAddJogo} />}
+  const handleAddGame = (newGame) => {
+    if (!gamesList.some(game => game.id === newGame.id)) {
+      setGamesList(prevGames => [...prevGames, newGame]);
+    }
+  };
+
+  return (
+    <div className="container">
+      <h1>Meus Jogos</h1>
+      
+      {/* Container para os jogos */}
+      <div className="games-container">
+        <div className="card-grid">
+          {gamesList.map(game => (
+            <Card
+              key={game.id}
+              title={game.title}
+              image={game.image}
+              genre={game.genre}
+            />
+          ))}
         </div>
-    );
+      </div>
+      
+      {/* Container para o botão de adicionar jogo */}
+      <div className="button-container">
+        <button className="submit-game-button" onClick={handleOpenModal}>
+          Adicionar Jogo
+        </button>
+      </div>
+
+      {isModalOpen && <CreateModal closeModal={handleOpenModal} onGameAdded={handleAddGame} />}
+    </div>
+  );
 }
 
 export default MeusJogos;

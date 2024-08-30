@@ -1,3 +1,6 @@
+/* Adiciona a fonte Montserrat */
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 /* Estilos gerais */
 body {
   font-family: 'Montserrat', sans-serif;
@@ -26,6 +29,7 @@ body {
   width: 100%;
   max-width: 1200px;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .hero-content {
@@ -43,6 +47,10 @@ body {
   font-size: 1.2rem;
   margin-bottom: 10px;
   line-height: 1.5;
+  border: 4px solid #ffb300; /* Borda amarela */
+  border-radius: 15px; /* Bordas arredondadas */
+  background-color: #fff; /* Fundo branco */
+  padding: 20px; /* Espaçamento interno */
 }
 
 .hero-image {
@@ -75,11 +83,44 @@ body {
   margin-right: 20px;
 }
 
+.filter-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.filter-section h3::after {
+  content: "▾"; /* Adiciona o ícone de dropdown */
+  font-size: 1rem;
+  margin-left: 5px;
+}
+
 .filters-placeholder {
   font-size: 1rem;
   color: #666;
-  text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+.filters-placeholder button {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.filters-placeholder button:hover {
+  background-color: #f0f0f0;
+  border-radius: 5px;
 }
 
 /* Seção de Jogos */
@@ -97,6 +138,39 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
+
+/* Estilo para os botões de paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #ffb300; /* Cor de fundo amarela */
+  color: white;
+  border: none;
+  border-radius: 5px; /* Borda levemente arredondada */
+  width: 30px; /* Largura fixa para manter o formato quadrado */
+  height: 30px; /* Altura fixa para manter o formato quadrado */
+  margin: 0 5px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex; /* Utiliza flexbox para centralizar o conteúdo */
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  transition: background-color 0.3s ease;
+}
+
+.pagination button.active {
+  background-color: #e0a800; /* Cor de fundo para o botão ativo */
+}
+
+.pagination button:hover {
+  background-color: #e0a800; /* Cor de fundo ao passar o mouse */
+}
+
+
 
 /* Espaço reservado para rodapé */
 .footer-placeholder {

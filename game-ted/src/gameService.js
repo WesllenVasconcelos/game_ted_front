@@ -1,13 +1,14 @@
 // src/gameService.js
-import { createGame, fetchGames } from './api';
+
+// Variável para armazenar jogos localmente
+let games = [];
 
 // Função para criar um novo jogo
 export const addGame = async (gameData) => {
     try {
-        const response = await createGame(gameData);
-        if (response.status === 200) {
-            return response.data;
-        }
+        // Simula a adição de um jogo
+        games.push(gameData);
+        return Promise.resolve(gameData);
     } catch (error) {
         console.error('Erro ao criar jogo:', error);
         throw error;
@@ -17,13 +18,10 @@ export const addGame = async (gameData) => {
 // Função para obter a lista de jogos
 export const getGames = async () => {
     try {
-        const response = await fetchGames();
-        if (response.status === 200) {
-            return response.data;
-        }
+        // Retorna os jogos armazenados localmente
+        return Promise.resolve(games);
     } catch (error) {
         console.error('Erro ao buscar jogos:', error);
         throw error;
     }
 };
-
