@@ -1,5 +1,5 @@
 import React from 'react';
-import GameCard from './GameCard.jsx'; // Importa o componente GameCard
+import GameCard from '../components/GameCard.jsx'; // Importa o componente GameCard
 import './DesenvolvedorHome.css'; // Estilos da página
 
 const gamesList = [
@@ -25,19 +25,19 @@ const DesenvolvedorHome = () => {
   return (
     <div className="developer-home">
       <header className="hero-section">
-        <div className="hero-content">
-          <h1>Transforme sua experiência de aprendizado!</h1>
-          <p>Divirta-se enquanto aprende!</p>
-          <p>
-            Utilize jogos como uma ferramenta de apoio à aprendizagem, explorando o vasto potencial que eles oferecem. Com nosso catálogo de jogos, você pode se divertir enquanto cria turmas, facilitando a interação com estudantes e amigos.
-          </p>
-          <p>
-            Além disso, você pode se envolver na emocionante jornada de desenvolver jogos educacionais, explorando como eles podem ter um impacto profundo e positivo na vida de um estudante, abrindo portas para novas oportunidades de aprendizado.
-          </p>
-        </div>
         <div className="hero-image">
-          <img src="link-para-imagem-hero" alt="Hero Image" />
+          <img src="https://raw.githubusercontent.com/WesllenVasconcelos/game_ted_front/main/game-ted/src/assets/devhome.png" alt="Hero Image" />
         </div>
+        <div className="hero-content">
+          <h1>Transforme sua experiência de aprendizado! Divirta-se enquanto aprende!</h1>
+          <p>
+          
+            Utilize jogos como uma ferramenta de apoio à aprendizagem, explorando o vasto potencial que eles oferecem. Com nosso catálogo de jogos, você pode se divertir enquanto cria turmas, facilitando a interação com estudantes e amigos.<br/>
+          
+            <br/>Além disso, você pode se envolver na emocionante jornada de desenvolver jogos educacionais, explorando como eles podem ter um impacto profundo e positivo na vida de um estudante, abrindo portas para novas oportunidades de aprendizado.
+          </p>
+        </div>
+        
       </header>
 
       <section className="content-section">
