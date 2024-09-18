@@ -1,193 +1,104 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
-
 .form-container {
-  text-align: center; /* Centraliza o título do formulário */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff; /* Fundo branco */
+  border-radius: 10px; /* Bordas arredondadas */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
 }
 
 .form-title {
-  font-family: 'Montserrat', sans-serif;
-  margin-bottom: 2rem; /* Espaçamento inferior do título */
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .form-content {
   display: flex;
-  justify-content: space-between; /* Distribui o espaço entre as seções */
-  width: 90%;
-  max-width: 1200px; /* Largura máxima do conteúdo */
-  margin: 0 auto; /* Centraliza o container */
-}
-
-.form-left, .form-right {
-  flex: 1; /* Ambas as seções ocupam o espaço disponível igualmente */
-  background-color: #fff; /* Fundo branco para as seções */
-  padding: 1rem; /* Espaçamento interno */
-}
-
-.form-left {
-  margin-right: 1rem; /* Espaço entre as seções */
-}
-
-.form-right {
-  margin-left: 1rem; /* Espaço entre as seções */
+  flex-direction: column;
+  gap: 15px; /* Espaçamento entre os campos */
 }
 
 label {
   display: flex;
-  flex-direction: column; /* Alinha o título e o campo em coluna */
-  margin-bottom: 1rem; /* Espaçamento inferior dos labels */
-  text-align: left; /* Alinha o texto à esquerda */
-}
-
-label span {
-  font-family: 'Montserrat', sans-serif;
-  margin-bottom: 0.5rem; /* Espaçamento inferior do título */
-}
-
-input[type="text"] {
-  width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.upload-section {
-    display: flex; /* Exibição em linha dos elementos dentro da seção de upload */
-    align-items: flex-start; /* Alinhamento vertical ao topo para garantir que a imagem e os botões fiquem no topo */
-    margin-bottom: 1rem; /* Espaçamento inferior entre seções de upload */
-}
-
-.upload-label {
-display: flex;
-align-items: flex-start; /* Alinha a imagem ao topo da seção */
-}
-
-.upload-icon {
-width: 150px; /* Tamanho ajustado da imagem conforme solicitado */
-height: auto; /* Mantém a proporção da imagem */
-margin-right: 1rem; /* Espaço entre a imagem e os botões */
-}
-
-.upload-input {
-display: none; /* Oculta o input de arquivo, se necessário */
-}
-
-.file-actions {
-display: flex;
-flex-direction: column; /* Coloca os botões um embaixo do outro */
-justify-content: center; /* Centraliza os botões verticalmente */
-}
-
-.file-actions button {
-padding: 0.5rem 1rem;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-margin-bottom: 0.5rem; /* Espaçamento entre os botões */
-}
-
-.file-actions button:first-child {
-background-color: #ff4d4d;
-color: #fff;
-}
-
-.file-actions button:last-child {
-background-color: #000;
-color: #fff;
-}
-
-
-fieldset {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin-top: 1rem;
-}
-
-legend {
-  font-family: 'Montserrat', sans-serif;
+  flex-direction: column;
   font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  .form-content {
-    flex-direction: column; /* Empilha as seções em dispositivos menores */
-  }
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 5px; /* Espaço entre o label e o input */
+}
 
-  .form-left, .form-right {
-    margin: 0;
-    margin-bottom: 1rem; /* Espaçamento inferior entre as seções */
-  }
+.radio-group {
+  display: flex;
+  gap: 20px; /* Espaço entre as opções de rádio */
+  align-items: center;
+}
+
+.radio-group label {
+  font-weight: normal;
+}
+
+.success-message {
+  color: green;
+  font-size: 16px;
+  margin-bottom: 15px;
+  text-align: center;
 }
 
 .sub-actions {
   display: flex;
-  justify-content: center; /* Centraliza os botões */
-  margin-top: 2rem; /* Espaçamento superior dos botões */
-  width: 50%;
-  margin-left: 25%;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 50px; /* Padding de 50px nas laterais */
 }
 
-.cancel-button, .submit-button {
-  padding: 0.5rem 1rem;
+.submit-button,
+.cancel-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #6a1b9a; /* Cor roxa do botão */
   border: none;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
-  margin: 0 1rem; /* Espaçamento entre os botões */
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover,
+.cancel-button:hover {
+  background-color: #4a148c; /* Tom mais escuro ao passar o mouse */
 }
 
 .cancel-button {
-  background-color: #ff4d4d; /* Cor de fundo para o botão Cancelar */
-  color: #fff; /* Cor do texto */
+  background-color: #e57373; /* Cor vermelha do botão cancelar */
 }
 
-.submit-button {
-  background-color: #00bfff; /* Cor de fundo para o botão Submeter */
-  color: #fff; /* Cor do texto */
+.cancel-button:hover {
+  background-color: #d32f2f; /* Tom mais escuro ao passar o mouse */
 }
 
-.thinktest-group,
-.glboard-group {
+/* Estilo para os dois grupos de campos */
+.form-left, .form-right {
   display: flex;
-  align-items: center;
-  gap: 1rem; /* Espaçamento entre os botões */
+  flex-direction: column;
+  gap: 15px;
 }
 
-.thinktest-group input[type="radio"],
-.glboard-group input[type="radio"] {
-  display: none; /* Oculta o input de rádio padrão */
-}
+/* Estilo responsivo para telas maiores */
+@media (min-width: 768px) {
+  .form-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
-.thinktest-group label,
-.glboard-group label {
-  display: flex;
-  align-items: center; /* Alinha o texto com o quadrado */
-  font-family: 'Montserrat', sans-serif;
-  cursor: pointer;
-}
-
-.thinktest-group input[type="radio"] + span,
-.glboard-group input[type="radio"] + span {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #ccc;
-  border-radius: 4px; /* Torna o botão de rádio quadrado */
-  margin-right: 0.5rem;
-}
-
-.thinktest-group input[type="radio"]:checked + span,
-.glboard-group input[type="radio"]:checked + span {
-  background-color: #fff; /* Cor de fundo do botão selecionado */
-}
-
-.thinktest-group input[type="radio"]:checked[value="yes"] + span,
-.glboard-group input[type="radio"]:checked[value="yes"] + span {
-  background-color: #00ff00; /* Verde para Sim */
-}
-
-.thinktest-group input[type="radio"]:checked[value="no"] + span,
-.glboard-group input[type="radio"]:checked[value="no"] + span {
-  background-color: #ff4d4d; /* Vermelho para Não */
+  .form-left, .form-right {
+    width: 48%; /* Distribui igualmente o espaço entre os dois grupos */
+  }
 }

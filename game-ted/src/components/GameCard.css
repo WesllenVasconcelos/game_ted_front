@@ -1,0 +1,26 @@
+.game-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .game-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .game-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #ffb300;
+  }
+  
+  .game-card p {
+    font-size: 1rem;
+    color: #666;
+  }
+  

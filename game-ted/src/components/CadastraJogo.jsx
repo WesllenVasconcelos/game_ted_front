@@ -1,178 +1,300 @@
 import React, { useState } from 'react';
-import './CadastroJogo.css'; // Adicione estilos para o formulário
-import videoIcon from '../assets/video-icon.png';
-import photoIcon from '../assets/photo-icon.png'; 
+import { useNavigate } from 'react-router-dom';
+import './CadastraJogo.css';
 
-const CadastroJogo = () => {
-  const [title, setTitle] = useState('');
-  const [accessLinks, setAccessLinks] = useState('');
-  const [platform, setPlatform] = useState('');
-  const [thinkTest, setThinkTest] = useState('');
-  const [glboard, setGlboard] = useState('');
+const CadastraJogo = ({ onAddJogo }) => {
+  // Estado para os novos campos
+  const [formData, setFormData] = useState({
+    nomeJogo: '',
+    participantes: '',
+    versao: '',
+    disciplina: '',
+    topico: '',
+    nivelEnsino: '',
+    idadeRecomendada: '',
+    serie: '',
+    objetivoAprendizagem: '',
+    sistemaOperacional: '',
+    espacoDisco: '',
+    requisitosAdicionais: '',
+    ferramentas: '',
+    midiasAdicionais: '',
+    title: '',
+    accessLinks: '',
+    platform: '',
+    thinkTest: false, // Agora é booleano para caixa de seleção
+    glboard: false,   // Agora é booleano para caixa de seleção
+    gameType: '',
+    ageRating: '',
+    contentRating: '',
+    gameGenre: '',
+    imageLink: '',
+    videoLink: '',
+  });
 
-  const handleTitleChange = (e) => setTitle(e.target.value);
-  const handleAccessLinksChange = (e) => setAccessLinks(e.target.value);
-  const handlePlatformChange = (e) => setPlatform(e.target.value);
-  const handleThinkTestChange = (e) => setThinkTest(e.target.value);
-  const handleGlboardChange = (e) => setGlboard(e.target.value);
+  const [successMessage, setSuccessMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+        // Supondo que você esteja enviando os dados para uma API
+        const response = await axios.post('/games', novoJogo);
+        
+        // Chama a função onAddJogo para atualizar o estado no componente pai
+        onAddJogo(response.data);
+
+        // Mensagem de sucesso
+        setSuccessMessage('Jogo criado com sucesso!');
+
+        // Limpar o formulário e redirecionar após 2 segundos
+        setTimeout(() => {
+            setSuccessMessage('');
+            setFormData({
+                nomeJogo: '',
+                participantes: '',
+                versao: '',
+                disciplina: '',
+                topico: '',
+                nivelEnsino: '',
+                idadeRecomendada: '',
+                serie: '',
+                objetivoAprendizagem: '',
+                sistemaOperacional: '',
+                espacoDisco: '',
+                requisitosAdicionais: '',
+                ferramentas: '',
+                midiasAdicionais: '',
+                title: '',
+                accessLinks: '',
+                platform: '',
+                thinkTest: false,
+                glboard: false,
+                gameType: '',
+                ageRating: '',
+                contentRating: '',
+                gameGenre: '',
+                imageLink: '',
+                videoLink: '',
+            });
+            navigate('/meusjogos');
+        }, 2000);
+    } catch (error) {
+        console.error('Erro ao criar o jogo', error);
+    }
+
+    const novoJogo = {
+      jogo_metadados: {
+        identificacao: {
+          nome: formData.nomeJogo,
+          producao: formData.participantes,
+          versao: formData.versao,
+        },
+        classificacao_curricular: {
+          disciplina: formData.disciplina,
+          topico: formData.topico,
+          nivel_ensino: formData.nivelEnsino,
+        },
+        publico_alvo: {
+          idade_recomendada: formData.idadeRecomendada,
+          serie: formData.serie,
+        },
+        resultados_aprendizagem: {
+          objetivo_aprendizagem: formData.objetivoAprendizagem,
+        },
+        requisitos_tecnicos: {
+          sistema_operacional: formData.sistemaOperacional,
+          espaco_disco: formData.espacoDisco,
+          requisitos_adicionais: formData.requisitosAdicionais,
+        },
+        recursos_ferramentas: {
+          ferramentas: formData.ferramentas,
+          midias_adicionais: formData.midiasAdicionais,
+        },
+        dados_jogo: {
+          title: formData.title,
+          accessLinks: formData.accessLinks,
+          platform: formData.platform,
+          thinkTest: formData.thinkTest,
+          glboard: formData.glboard,
+          gameType: formData.gameType,
+          ageRating: formData.ageRating,
+          contentRating: formData.contentRating,
+          gameGenre: formData.gameGenre,
+          imageLink: formData.imageLink,
+          videoLink: formData.videoLink,
+        },
+      },
+    };
+
+    onAddJogo(novoJogo);
+
+    setSuccessMessage('Jogo criado com sucesso!');
+    setTimeout(() => {
+      setSuccessMessage('');
+      setFormData({
+        nomeJogo: '',
+        participantes: '',
+        versao: '',
+        disciplina: '',
+        topico: '',
+        nivelEnsino: '',
+        idadeRecomendada: '',
+        serie: '',
+        objetivoAprendizagem: '',
+        sistemaOperacional: '',
+        espacoDisco: '',
+        requisitosAdicionais: '',
+        ferramentas: '',
+        midiasAdicionais: '',
+        title: '',
+        accessLinks: '',
+        platform: '',
+        thinkTest: false,
+        glboard: false,
+        gameType: '',
+        ageRating: '',
+        contentRating: '',
+        gameGenre: '',
+        imageLink: '',
+        videoLink: '',
+      });
+      navigate('/meusjogos');
+    }, 2000);
+  };
 
   return (
-    <div className="form-container">
-      <h1 className="form-title">Formulário de Submissão</h1>
-      <div className="form-content">
-        <div className="form-left">
-          <label>
-            <span>Título:</span>
-            <input 
-              type="text" 
-              name="title" 
-              value={title} 
-              onChange={handleTitleChange} 
-            />
-          </label>
-          <label>
-            <span>URL do Projeto:</span>
-            <input 
-              type="text" 
-              name="project-url" 
-              value={accessLinks} 
-              onChange={handleAccessLinksChange} 
-            />
-          </label>
-          <label>
-            <span>Tipo de Jogo:</span>
-            <input 
-              type="text" 
-              name="game-type" 
-              // Value and onChange handlers as needed
-            />
-          </label>
-          <label>
-            <span>Faixa Etária:</span>
-            <input 
-              type="text" 
-              name="age-rating" 
-              // Value and onChange handlers as needed
-            />
-          </label>
-          <label>
-            <span>Classificação de Conteúdo:</span>
-            <input 
-              type="text" 
-              name="content-rating" 
-              // Value and onChange handlers as needed
-            />
-          </label>
-          <label>
-            <span>Gênero do Jogo:</span>
-            <input 
-              type="text" 
-              name="game-genre" 
-              // Value and onChange handlers as needed
-            />
-          </label>
-          <label>
-            <span>Glboard:</span>
-            <div className="glboard-group">
-              <label>
-                <input 
-                  type="radio" 
-                  name="glboard" 
-                  value="yes" 
-                  checked={glboard === 'yes'} 
-                  onChange={handleGlboardChange} 
+    <div className="cadastra-jogo-container">
+      <h1 className="cadastra-jogo-title">Formulário de Submissão</h1>
+      {successMessage && <div className="cadastra-jogo-success-message">{successMessage}</div>}
+      <form className="cadastra-jogo-form" onSubmit={handleSubmit}>
+        <div className="cadastra-jogo-metadados">
+          <h2>Metadados do Jogo</h2>
+          {[
+            { label: 'Nome do Jogo', name: 'nomeJogo' },
+            { label: 'Participante(s)', name: 'participantes' },
+            { label: 'Versão', name: 'versao' },
+            {
+              label: 'Disciplina', name: 'disciplina', type: 'dropdown', options: [
+                'Matemática', 'Ciências', 'História', 'Geografia', 'Língua Portuguesa'
+              ]
+            },
+            {
+              label: 'Tópico', name: 'topico', type: 'dropdown', options: [
+                'Álgebra', 'Biologia', 'Revolução Industrial', 'Geopolítica', 'Gramática'
+              ]
+            },
+            {
+              label: 'Nível de Ensino', name: 'nivelEnsino', type: 'dropdown', options: [
+                'Educação Infantil', 'Ensino Fundamental I', 'Ensino Fundamental II', 'Ensino Médio'
+              ]
+            },
+            {
+              label: 'Idade Recomendada', name: 'idadeRecomendada', type: 'dropdown', options: [
+                '3-5 anos', '6-8 anos', '9-11 anos', '12-14 anos', '15-18 anos'
+              ]
+            },
+            {
+              label: 'Série', name: 'serie', type: 'dropdown', options: [
+                '1ª Série', '2ª Série', '3ª Série', '4ª Série', '5ª Série'
+              ]
+            },
+            {
+              label: 'Objetivo de Aprendizagem', name: 'objetivoAprendizagem', type: 'dropdown', options: [
+                'Resolução de problemas', 'Leitura e Interpretação', 'Pensamento crítico', 'Habilidades Socioemocionais'
+              ]
+            },
+            {
+              label: 'Sistema Operacional', name: 'sistemaOperacional', type: 'dropdown', options: [
+                'Windows', 'macOS', 'Linux', 'Android', 'iOS', 'Desplugado'
+              ]
+            },
+            {
+              label: 'Plataforma', name: 'platform', type: 'dropdown', options: [
+                'Web', 'Desktop', 'Mobile', 'Consoles', 'Multiplataforma'
+              ]
+            },
+            { label: 'Espaço em Disco', name: 'espacoDisco' },
+            { label: 'Requisitos Adicionais', name: 'requisitosAdicionais' },
+            { label: 'Ferramentas', name: 'ferramentas' },
+            { label: 'Mídias Adicionais', name: 'midiasAdicionais' },
+            { label: 'Título', name: 'title' },
+            { label: 'Link de Acesso', name: 'accessLinks' },
+            // Campos para caixas de seleção
+            { label: 'ThinkTest', name: 'thinkTest', type: 'checkbox' },
+            { label: 'Glboard', name: 'glboard', type: 'checkbox' },
+            // Campos para dropdowns
+            {
+              label: 'Tipo de Jogo', name: 'gameType', type: 'dropdown', options: [
+                'Aventura', 'Puzzle', 'Estratégia', 'Esportes', 'RPG'
+              ]
+            },
+            {
+              label: 'Faixa Etária', name: 'ageRating', type: 'dropdown', options: [
+                'Livre', '10+', '12+', '16+', '18+'
+              ]
+            },
+            {
+              label: 'Classificação de Conteúdo', name: 'contentRating', type: 'dropdown', options: [
+                'Livre', 'Violência', 'Drogas', 'Linguagem Imprópria', 'Conteúdo Sexual'
+              ]
+            },
+            {
+              label: 'Gênero', name: 'gameGenre', type: 'dropdown', options: [
+                'Ação', 'Aventura', 'Simulação', 'RPG', 'Esportes'
+              ]
+            },
+            { label: 'Link da Imagem', name: 'imageLink' },
+            { label: 'Link do Vídeo', name: 'videoLink' },
+          ].map((field) => (
+            <label key={field.name}>
+              <span>{field.label}:</span>
+              {field.type === 'checkbox' ? (
+                <input
+                  type="checkbox"
+                  name={field.name}
+                  checked={formData[field.name]}
+                  onChange={handleChange}
                 />
-                <span></span>
-                Sim
-              </label>
-              <label>
-                <input 
-                  type="radio" 
-                  name="glboard" 
-                  value="no" 
-                  checked={glboard === 'no'} 
-                  onChange={handleGlboardChange} 
+              ) : field.type === 'dropdown' ? (
+                <select
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                >
+                  <option value="">Selecione</option>
+                  {field.options.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type="text"
+                  name={field.name}
+                  value={formData[field.name]}
+                  onChange={handleChange}
                 />
-                <span></span>
-                Não
-              </label>
-            </div>
-          </label>
+              )}
+            </label>
+          ))}
         </div>
-        <div className="form-right">
-          <label>
-            <span>Anexo de Links de Acesso ao Jogo:</span>
-            <input 
-              type="text" 
-              name="access-links" 
-              value={accessLinks} 
-              onChange={handleAccessLinksChange} 
-            />
-          </label>
-          <label className="upload-section">
-            <div className="upload-label">
-              <img src={videoIcon} alt="Video" className="upload-icon" />
-              <input type="file" className="upload-input" />
-            </div>
-            <div className="file-actions">
-              <button type="button">Enviar</button>
-              <button type="button">Biblioteca de Mídia</button>
-            </div>
-          </label>
-          <label className="upload-section">
-            <div className="upload-label">
-              <img src={photoIcon} alt="Photos" className="upload-icon" />
-              <input type="file" multiple className="upload-input" />
-            </div>
-            <div className="file-actions">
-              <button type="button">Enviar</button>
-              <button type="button">Biblioteca de Mídia</button>
-            </div>
-          </label>
-          <label>
-            <span>Plataforma:</span>
-            <input 
-              type="text" 
-              name="platform" 
-              value={platform} 
-              onChange={handlePlatformChange} 
-            />
-          </label>
-          <label>
-            <span>ThinkTest:</span>
-            <div className="thinktest-group">
-              <label>
-                <input 
-                  type="radio" 
-                  name="thinktest" 
-                  value="yes" 
-                  checked={thinkTest === 'yes'} 
-                  onChange={handleThinkTestChange} 
-                />
-                <span></span>
-                Sim
-              </label>
-              <label>
-                <input 
-                  type="radio" 
-                  name="thinktest" 
-                  value="no" 
-                  checked={thinkTest === 'no'} 
-                  onChange={handleThinkTestChange} 
-                />
-                <span></span>
-                Não
-              </label>
-            </div>
-          </label>
+        <div className="cadastra-jogo-submit-container">
+          <button className="cadastra-jogo-submit-button" type="submit">Submeter Jogo</button>
         </div>
-      </div>
-      <div className="sub-actions">
-        <button type="button" className="cancel-button">Cancelar</button>
-        <button type="submit" className="submit-button">Submeter</button>
-      </div>
+      </form>
     </div>
   );
 };
 
-export default CadastroJogo;
+export default CadastraJogo;
